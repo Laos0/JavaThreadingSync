@@ -1,0 +1,17 @@
+import java.util.ArrayList;
+
+public class Wrapper implements Runnable {
+
+	Customer customerObj;
+	private int from, to;
+	
+	Wrapper(Customer c, int from, int to, ArrayList<Customer> customerList){
+		this.customerObj = c;
+		this.from = from;
+		this.to = to;
+	}
+	
+	public void run() {
+		customerObj.parallelCount(from, to);
+	}
+}
