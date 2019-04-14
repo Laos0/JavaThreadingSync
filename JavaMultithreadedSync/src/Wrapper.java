@@ -2,18 +2,22 @@ import java.util.ArrayList;
 
 public class Wrapper implements Runnable {
 
-	Customer customerObj;
+	private ArrayList<Customer> customers;
 	private int from, to;
-	private ArrayList customerList;
 	
-	Wrapper(Customer c, int from, int to, ArrayList<Customer> customerList){
-		this.customerObj = c;
+	Wrapper(ArrayList<Customer> customers, int from, int to){
+		this.customers = customers;
 		this.from = from;
 		this.to = to;
-		this.customerList = customerList;
 	}
 	
 	public void run() {
-		customerObj.parallelCount(from, to);
+		parallelCount(this.from, this.to);
+	}
+
+	private void parallelCount(int from, int to){
+		// each wrapper will run each thread givent he to and from index.
+		// like this wrapper instance will run index 0-500
+
 	}
 }
