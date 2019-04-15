@@ -1,4 +1,3 @@
-//import jdk.internal.org.xml.sax.ErrorHandler;
 import java.io.File;
 
 import java.io.FileNotFoundException;
@@ -31,45 +30,13 @@ public class BankDriver {
 		long startTime = System.currentTimeMillis();
 		lowBalances = sequentialCounting(custList); // sequential run
 		long estimatedTime = System.currentTimeMillis() - startTime;
-		System.out.println("SEQUENTIAL RUN");
 		System.out.println("Number of accounts with less than 1000$ is: " + lowBalances);
 		System.out.println("Sequential run took in miliseconds: " + estimatedTime);
 		// --End of Sequential-Run--------------------------------------------------------
 		// *******************************************************************************
 		// --Parallel Run-----------------------------------------------------------------
-
-		startTime = 0;
-		startTime = System.currentTimeMillis();
-		Wrapper w1 = new Wrapper(custList, 0, custList.size() / 4);
-		Wrapper w2 = new Wrapper(custList, custList.size() / 4, custList.size() / 2);
-		Wrapper w3 = new Wrapper(custList, custList.size() / 2, custList.size() * 3 / 4);
-		Wrapper w4 = new Wrapper(custList, custList.size() * 3 / 4, custList.size());
-
-		Thread t1 = new Thread(w1);
-		Thread t2 = new Thread(w2);
-		Thread t3 = new Thread(w3);
-		Thread t4 = new Thread(w4);
-
-		t1.start();
-		t2.start();
-		t3.start();
-		t4.start();
-
-		try {
-			t1.join();
-			t2.join();
-			t3.join();
-			t4.join();
-		} catch(Exception e){
-			throw new Error("something went wrong");
-		}
-		estimatedTime = System.currentTimeMillis() - startTime;
-
-		// total count of all threads, since all thread should be done by now
-		int totalCount = w1.finalCount + w2.finalCount + w3.finalCount + w4.finalCount;
-		System.out.println("MULTITHREADED RUN");
-		System.out.println("Number of accounts with less than 1000$ is: " + totalCount);
-		System.out.println("Multithreaded run took in miliseconds: " + estimatedTime);
+		Wrapper wrapper1 = new Wrapper(custList,0,(custList.size())/4);
+		Thread th1 = new Thread(wrapper1);
 
 		// --End-of-Parallel-Run----------------------------------------------------------
 

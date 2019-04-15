@@ -38,7 +38,6 @@ public class BankDriver {
 		// *******************************************************************************
 		// --Parallel Run-----------------------------------------------------------------
 
-		startTime = 0;
 		startTime = System.currentTimeMillis();
 		Wrapper w1 = new Wrapper(custList, 0, custList.size() / 4);
 		Wrapper w2 = new Wrapper(custList, custList.size() / 4, custList.size() / 2);

@@ -38,7 +38,6 @@ public class BankDriver {
 		// *******************************************************************************
 		// --Parallel Run-----------------------------------------------------------------
 
-		startTime = 0;
 		startTime = System.currentTimeMillis();
 		Wrapper w1 = new Wrapper(custList, 0, custList.size() / 4);
 		Wrapper w2 = new Wrapper(custList, custList.size() / 4, custList.size() / 2);
@@ -63,7 +62,7 @@ public class BankDriver {
 		} catch(Exception e){
 			throw new Error("something went wrong");
 		}
-		estimatedTime = System.currentTimeMillis() - startTime;
+		estimatedTime = System.currentTimeMillis();
 
 		// total count of all threads, since all thread should be done by now
 		int totalCount = w1.finalCount + w2.finalCount + w3.finalCount + w4.finalCount;

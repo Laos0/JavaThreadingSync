@@ -21,18 +21,10 @@ public class Wrapper implements Runnable {
 	private void parallelCount(int from, int to){
 		// each wrapper will run each thread givent he to and from index.
 		// like this wrapper instance will run index 0-500
-		if(customers != null && customers.size() > 0) {
-			for(int i = from; i < to; i++) {
-				// loop
-				if(customers.get(i).getBalance() < 1000) {
-					finalCount++;
-				}
-			}
-		}
 
 	}
 
-	private synchronized void parallelCountJunkCode(int from, int to) {
+	private void parallelCountJunkCode(int from, int to) {
 		if(customers != null && customers.size() > 0) {
 			for(int i = from; i < to; i++) {
 				// loop
@@ -41,5 +33,9 @@ public class Wrapper implements Runnable {
 				}
 			}
 		}
+	}
+	
+	public void getCount() {
+		return finalCount;
 	}
 }

@@ -31,15 +31,12 @@ public class BankDriver {
 		long startTime = System.currentTimeMillis();
 		lowBalances = sequentialCounting(custList); // sequential run
 		long estimatedTime = System.currentTimeMillis() - startTime;
-		System.out.println("SEQUENTIAL RUN");
 		System.out.println("Number of accounts with less than 1000$ is: " + lowBalances);
 		System.out.println("Sequential run took in miliseconds: " + estimatedTime);
 		// --End of Sequential-Run--------------------------------------------------------
 		// *******************************************************************************
 		// --Parallel Run-----------------------------------------------------------------
 
-		startTime = 0;
-		startTime = System.currentTimeMillis();
 		Wrapper w1 = new Wrapper(custList, 0, custList.size() / 4);
 		Wrapper w2 = new Wrapper(custList, custList.size() / 4, custList.size() / 2);
 		Wrapper w3 = new Wrapper(custList, custList.size() / 2, custList.size() * 3 / 4);
@@ -63,13 +60,10 @@ public class BankDriver {
 		} catch(Exception e){
 			throw new Error("something went wrong");
 		}
-		estimatedTime = System.currentTimeMillis() - startTime;
 
 		// total count of all threads, since all thread should be done by now
 		int totalCount = w1.finalCount + w2.finalCount + w3.finalCount + w4.finalCount;
-		System.out.println("MULTITHREADED RUN");
-		System.out.println("Number of accounts with less than 1000$ is: " + totalCount);
-		System.out.println("Multithreaded run took in miliseconds: " + estimatedTime);
+		System.out.println(totalCount);
 
 		// --End-of-Parallel-Run----------------------------------------------------------
 
