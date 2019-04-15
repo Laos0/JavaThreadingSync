@@ -26,9 +26,9 @@ public class Wrapper implements Runnable {
 
 	private void parallelCountJunkCode(int from, int to) {
 		if(customers != null && customers.size() > 0) {
-			for(Customer cust: customers) {
+			for(int i = from; i < to; i++) {
 				// loop
-				if(cust.getBalance() < 1000) {
+				if(customers.get(i).getBalance() < 1000) {
 					finalCount++;
 				}
 			}
