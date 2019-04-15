@@ -1,3 +1,5 @@
+import jdk.internal.org.xml.sax.ErrorHandler;
+
 import java.io.File;
 
 import java.io.FileNotFoundException;
@@ -35,7 +37,33 @@ public class BankDriver {
 		// --End of Sequential-Run--------------------------------------------------------
 		// *******************************************************************************
 		// --Parallel Run-----------------------------------------------------------------
-		
+
+		Wrapper w1 = new Wrapper(custList, 0, custList.size() / 4);
+		Wrapper w2 = new Wrapper(custList, custList.size() / 4, custList.size() / 2);
+		Wrapper w3 = new Wrapper(custList, custList.size() / 2, custList.size() * 3 / 4);
+		Wrapper w4 = new Wrapper(custList, custList.size() * 3 / 4, custList.size());
+
+		Thread t1 = new Thread(w1);
+		Thread t2 = new Thread(w2);
+		Thread t3 = new Thread(w3);
+		Thread t4 = new Thread(w4);
+
+		t1.start();
+		t2.start();
+		t3.start();
+		t4.start();
+
+		try {
+			t1.join();
+			t2.join();
+			t3.join();
+			t4.join();
+		} catch(Exception e){
+			throw new Error("something went wrong");
+		}
+
+		// total count of all threads, since all thread should be done by now
+		int totalCount = w1.finalCount + w2.finalCount + w3.finalCount + w4.finalCount;
 
 		// --End-of-Parallel-Run----------------------------------------------------------
 
